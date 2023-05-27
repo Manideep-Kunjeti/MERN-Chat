@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap');
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    background-image: url(cool-background8.svg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Jost', sans-serif;
+}
