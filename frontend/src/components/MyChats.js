@@ -7,7 +7,7 @@ import ChatLoading from './ChatLoading'
 import { getSender } from '../config/ChatLogics'
 import GroupChatModal from './miscellaneous/GroupChatModal'
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState()
     const [loggedUser, setLoggedUser] = useState()
     const toast = useToast()
@@ -38,15 +38,16 @@ const MyChats = () => {
     useEffect(() => {
         setLoggedUser(JSON.parse(localStorage.getItem('userInfo')))
         fetchChats()
-    }, [])
+    }, [fetchAgain])
 
     return (
         <Box
-            d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+            display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
             flexDir="column"
             alignItems="center"
+            bg="white"
             p={3}
-            w={{ base: "100%", md: "31%" }}
+            width={{ base: "100%", md: "31%" }}
             borderRadius="lg"
             borderWidth="1px"
         >
@@ -57,7 +58,6 @@ const MyChats = () => {
                 fontFamily="Jost sans-serif"
                 display="flex"
                 w="100%"
-                // h="80vh"
                 justifyContent="space-between"
                 alignItems="center"
             >
@@ -77,9 +77,9 @@ const MyChats = () => {
                 p={3}
                 bg="#F8F8F8"
                 w="100%"
-                h="100%"
+                h={{ base: "90%", md: "90%", lg: "90%" }}
                 borderRadius="lg"
-                overflowY="hidden"
+                overflowY={'hidden'}
             >
                 {chats ? (
                     <Stack overflowY='scroll'>
@@ -107,7 +107,7 @@ const MyChats = () => {
                     <ChatLoading />
                 )}
             </Box>
-        </Box>
+        </Box >
     )
 }
 

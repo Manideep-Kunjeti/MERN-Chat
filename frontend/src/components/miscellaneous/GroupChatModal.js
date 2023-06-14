@@ -128,7 +128,7 @@ const GroupChatModal = ({ children }) => {
                         </FormControl>
 
                         {/* To render selected users */}
-                        <Box w="100%" display="flex" flexWrap="wrap">
+                        <Box w="100%" display="flex" flexWrap="wrap" justifyContent="center">
                             {selectedUsers.map((u) => (
                                 <UserBadgeItem key={user._id} user={u} handleFunction={() => handleDelete(u)} />
                             ))}
