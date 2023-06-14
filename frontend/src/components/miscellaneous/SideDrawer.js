@@ -1,13 +1,13 @@
 import { Box, Button, Tooltip, Text, Menu, MenuButton, Avatar, MenuItem, MenuList, MenuDivider, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, Input, useToast, Spinner } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { SearchIcon, BellIcon, ChevronDownIcon } from '@chakra-ui/icons'
-import { ChatState } from '../Context/ChatProvider'
-import ProfileModal from './miscellaneous/ProfileModal'
+import { ChatState } from '../../Context/ChatProvider'
+import ProfileModal from './ProfileModal'
 import { useHistory } from 'react-router-dom'
 import { useDisclosure } from '@chakra-ui/hooks'
 import axios from 'axios'
-import ChatLoading from './ChatLoading'
-import UserListItem from './UserAvatar/UserListItem'
+import ChatLoading from '../ChatLoading'
+import UserListItem from '../UserAvatar/UserListItem'
 
 const SideDrawer = () => {
     const [search, setSearch] = useState("")
