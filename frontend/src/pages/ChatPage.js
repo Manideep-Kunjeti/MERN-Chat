@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { ChatState } from '../Context/ChatProvider'
 import { Box } from '@chakra-ui/react'
-import MyChats from '../components/miscellaneous/MyChats'
-import ChatBox from '../components/miscellaneous/ChatBox'
-import SideDrawer from '../components/miscellaneous/SideDrawer'
+import MyChats from '../components/MyChats'
+import ChatBox from '../components/ChatBox'
+import SideDrawer from '../components/SideDrawer'
 
 const ChatPage = () => {
     const { user } = ChatState()
