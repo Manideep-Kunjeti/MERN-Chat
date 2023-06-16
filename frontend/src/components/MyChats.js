@@ -107,7 +107,7 @@ const MyChats = ({ fetchAgain }) => {
                     <ChatLoading />
                 )}
             </Box>
-        </Box >
+        </Box>
     )
 }
 

@@ -4,6 +4,8 @@ import { Box, IconButton, Text } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { getSender, getSenderFull } from '../config/ChatLogics'
 import ProfileModal from './miscellaneous/ProfileModal'
+import GroupChatModal from './miscellaneous/GroupChatModal'
+import UpdateGroupChatModal from './miscellaneous/UpdateGroupChatModal'
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const { user, selectedChat, setSelectedChat } = ChatState()
@@ -27,16 +29,30 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             onClick={() => setSelectedChat("")}
                         />
                         {selectedChat.isGroupChat ? (
-                            <>{selectedChat.chatName}</>
+                            <>
+                                {selectedChat.chatName}
+                                <UpdateGroupChatModal fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+                            </>
                         ) : (
                             <>
-                                {getSender(user, selectedChat.users)}
+                                {getSender(user, selectedChat.users)} {/* Name of the other person(other than user) */}
                                 <ProfileModal user={getSenderFull(user, selectedChat.users)} />
                             </>
                         )}
-                        {/* <Text></Text>
-                    {selectedChat.chatName} */}
                     </Text>
+                    <Box
+                        display="flex"
+                        flexDir="column"
+                        justifyContent="flex-end"
+                        p={3}
+                        bg="#E8E8E8"
+                        w="100%"
+                        h="100%"
+                        borderRadius="lg"
+                        overflowY="hidden"
+                    >
+
+                    </Box>
                 </>
             ) : (
                 <Box display="flex" alignItems="center" justifyContent="center" h="100%">
