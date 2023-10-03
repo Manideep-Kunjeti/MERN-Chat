@@ -8,6 +8,8 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import axios from 'axios'
 import ChatLoading from '../ChatLoading'
 import UserListItem from '../UserAvatar/UserListItem'
+import { getSender } from '../../config/ChatLogics'
+import NotificationBadge, { Effect } from 'react-notification-badge'
 
 const SideDrawer = () => {
     const [search, setSearch] = useState("")
@@ -15,7 +17,7 @@ const SideDrawer = () => {
     const [loading, setLoading] = useState(false)
     const [loadingChat, setLoadingChat] = useState()
 
-    const { user, setSelectedChat, chats, setChats } = ChatState()
+    const { user, setSelectedChat, chats, setChats, notification, setNotification } = ChatState()
     // console.log(user)
 
     const history = useHistory()
@@ -109,8 +111,23 @@ const SideDrawer = () => {
                 <div>
                     <Menu>
                         <MenuButton p={1}>
+                            <NotificationBadge
+                                count={notification.length}
+                                effect={Effect.SCALE}
+                            />
                             <BellIcon fontSize="2xl" m={1} />
                         </MenuButton>
+                        <MenuList pl={2} cursor="pointer">
+                            {!notification.length && "No New Messages"}
+                            {notification.map((notif) => (
+                                <MenuList key={notif._id} onClick={() => {
+                                    setSelectedChat(notif.chat)
+                                    setNotification(notification.filter((n) => n !== notif))
+                                }}>
+                                    {notif.chat.isGroupChat ? `New Message from ${notif.chat.chatName}` : `New Message from ${getSender(user, notif.chat.users)}`}
+                                </MenuList>
+                            ))}
+                        </MenuList>
                     </Menu>
                     <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
